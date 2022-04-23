@@ -12,7 +12,8 @@ public class TextReader {
         StringBuilder stringBuilder = new StringBuilder();
         Text text = new Text();
 
-        try (FileInputStream fileInputStream = new FileInputStream("text.txt")) {
+        try (FileInputStream fileInputStream = new FileInputStream("D:\\MyRepository\\EpamTask2\\task2\\" +
+                "src\\main\\resources\\textFiles\\inputText.txt")) {
 
             Scanner scanner = new Scanner(fileInputStream);
 
@@ -21,7 +22,7 @@ public class TextReader {
             }
             scanner.close();
         } catch (IOException e) {
-            //TODO: logger
+            //TODO: logger and solve the dots
         }
         return stringBuilder;
     }
