@@ -2,15 +2,16 @@ package com.epam.task2.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Paragraph implements TextElement {
     private List<TextElement> sentences = new ArrayList<>();
 
-    public Paragraph() {
-    }
-
     public Paragraph(List<TextElement> sentences) {
         this.sentences = sentences;
+    }
+
+    public Paragraph() {
     }
 
     @Override
@@ -23,7 +24,15 @@ public class Paragraph implements TextElement {
     }
 
     @Override
-    public void addElement(TextElement textElement) {
-        sentences.add(textElement);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Paragraph)) return false;
+        Paragraph paragraph = (Paragraph) o;
+        return Objects.equals(sentences, paragraph.sentences);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(sentences);
     }
 }

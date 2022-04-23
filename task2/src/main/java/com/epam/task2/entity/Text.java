@@ -2,15 +2,16 @@ package com.epam.task2.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Text implements TextElement {
     private List<TextElement> paragraphsAndCodeBlocks = new ArrayList<>();
 
-    public Text(){
-    }
-
     public Text(List<TextElement> paragraphsAndCodeBlocks) {
         this.paragraphsAndCodeBlocks = paragraphsAndCodeBlocks;
+    }
+
+    public Text() {
     }
 
     @Override
@@ -24,7 +25,15 @@ public class Text implements TextElement {
     }
 
     @Override
-    public void addElement(TextElement textElement) {
-        paragraphsAndCodeBlocks.add(textElement);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Text)) return false;
+        Text text = (Text) o;
+        return paragraphsAndCodeBlocks.equals(text.paragraphsAndCodeBlocks);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(paragraphsAndCodeBlocks);
     }
 }

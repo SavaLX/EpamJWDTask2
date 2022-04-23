@@ -1,14 +1,16 @@
 package com.epam.task2.entity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
-public class CodeBlock implements TextElement{
+public class CodeBlock implements TextElement {
 
-    StringBuilder value;
+    private StringBuilder value;
 
     public CodeBlock(StringBuilder value) {
         this.value = value;
+    }
+
+    public CodeBlock() {
     }
 
     @Override
@@ -17,7 +19,22 @@ public class CodeBlock implements TextElement{
     }
 
     @Override
-    public void addElement(TextElement textElement) {
-        throw new UnsupportedOperationException();
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CodeBlock)) return false;
+        CodeBlock codeBlock = (CodeBlock) o;
+        return Objects.equals(getValue(), codeBlock.getValue());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getValue());
+    }
+
+    @Override
+    public String toString() {
+        return "CodeBlock{" +
+                "value=" + value +
+                '}';
     }
 }

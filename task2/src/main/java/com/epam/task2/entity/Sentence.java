@@ -2,16 +2,17 @@ package com.epam.task2.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Sentence implements TextElement {
 
     private List<TextElement> words = new ArrayList<>();
 
-    public Sentence() {
-    }
-
     public Sentence(List<TextElement> words) {
         this.words = words;
+    }
+
+    public Sentence() {
     }
 
     @Override
@@ -24,7 +25,15 @@ public class Sentence implements TextElement {
     }
 
     @Override
-    public void addElement(TextElement textElement) {
-        words.add(textElement);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Sentence)) return false;
+        Sentence sentence = (Sentence) o;
+        return words.equals(sentence.words);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(words);
     }
 }

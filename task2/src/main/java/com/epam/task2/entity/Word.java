@@ -2,8 +2,7 @@ package com.epam.task2.entity;
 
 public class Word implements TextElement {
 
-    StringBuilder value;
-
+    private StringBuilder value;
 
     public Word(StringBuilder value) {
         this.value = value;
@@ -21,8 +20,4 @@ public class Word implements TextElement {
         this.value = value;
     }
 
-    @Override
-    public void addElement(TextElement textElement) {
-        throw new UnsupportedOperationException();
-    }
 }
