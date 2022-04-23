@@ -4,6 +4,8 @@ import com.epam.task2.entity.CodeBlock;
 import com.epam.task2.entity.Paragraph;
 import com.epam.task2.entity.TextElement;
 import com.epam.task2.reader_writer.TextReader;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +16,16 @@ import java.util.regex.Pattern;
 public class TextParser {
     private static final String REGEX_PARAGRAPHS = "^([A-Z]|[1-9])";
 
+    private static final Logger logger = LogManager.getLogger(TextParser.class);
+
     public List<TextElement> parse() {
 
         List<String> textLines = parseTextToLines();
         List<TextElement> elements = new ArrayList<>();
         ParagraphParser paragraphParser = new ParagraphParser();
         Pattern pattern = Pattern.compile(REGEX_PARAGRAPHS);
+
+        logger.debug("Start parsing text lines into paragraphs and code lines and save them in List<TextElement>");
 
         for (String string : textLines) {
             Matcher matcher = pattern.matcher(string);
@@ -29,6 +35,8 @@ public class TextParser {
                 elements.add(new CodeBlock(new StringBuilder(string)));
             }
         }
+
+        logger.debug("List<TextElement has been completed with paragraphs and code blocks");
         return elements;
     }
 
@@ -43,6 +51,8 @@ public class TextParser {
 
         Pattern pattern = Pattern.compile(REGEX_PARAGRAPHS);
 
+        logger.debug("Start dividing text into lines");
+
         while (scanner.hasNextLine()) {
             line = scanner.nextLine();
             Matcher matcher1 = pattern.matcher(line);
@@ -55,6 +65,9 @@ public class TextParser {
             }
         }
         scanner.close();
+
+        logger.debug("Text has been divided in lines");
+
         return lines;
     }
 }

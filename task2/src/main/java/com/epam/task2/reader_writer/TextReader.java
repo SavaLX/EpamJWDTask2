@@ -1,16 +1,21 @@
 package com.epam.task2.reader_writer;
 
-import com.epam.task2.entity.Text;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Scanner;
 
+
 public class TextReader {
+
+    private static final Logger logger = LogManager.getLogger(TextReader.class);
 
     public StringBuilder textRead() {
         StringBuilder stringBuilder = new StringBuilder();
-        Text text = new Text();
+
+        logger.debug("Start reading text from input file");
 
         try (FileInputStream fileInputStream = new FileInputStream("D:\\MyRepository\\EpamTask2\\task2\\" +
                 "src\\main\\resources\\textFiles\\inputText.txt")) {
@@ -24,6 +29,9 @@ public class TextReader {
         } catch (IOException e) {
             //TODO: logger and solve the dots
         }
+
+        logger.debug("Text has been reading from file");
+
         return stringBuilder;
     }
 }

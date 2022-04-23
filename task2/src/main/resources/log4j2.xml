@@ -1,13 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN">
+<Configuration status="info" strict="true"
+               name="XMLConfig" package="org.apache.logging.log4j">
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <PatternLayout pattern="%d %m %l %n"/>
         </Console>
+        <RollingFile name="LogToFile"
+                     filename="logs/log4j2.log"
+                     filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss} %p %c{1.} [%t] %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="5 KB"/>
+            </Policies>
+<!--             Max 2 files will be created everyday -->
+<!--            <DefaultRolloverStrategy max="2">-->
+<!--                <Delete basePath="logs" maxDepth="10">-->
+<!--                    &lt;!&ndash; Delete all files older than 3 days &ndash;&gt;-->
+<!--                    <IfLastModified age="3"/>-->
+<!--                </Delete>-->
+<!--            </DefaultRolloverStrategy>-->
+        </RollingFile>
+
     </Appenders>
     <Loggers>
-        <Root level="error">
+        <Root level="DEBUG">
             <AppenderRef ref="Console"/>
+            <AppenderRef ref="LogToFile"/>
         </Root>
     </Loggers>
 </Configuration>
