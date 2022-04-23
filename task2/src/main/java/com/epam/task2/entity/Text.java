@@ -9,12 +9,16 @@ public class Text implements TextElement {
     public Text(){
     }
 
+    public Text(List<TextElement> paragraphsAndCodeBlocks) {
+        this.paragraphsAndCodeBlocks = paragraphsAndCodeBlocks;
+    }
+
     @Override
     public StringBuilder getValue() {
         StringBuilder value = new StringBuilder();
 
         for (TextElement textElement : paragraphsAndCodeBlocks) {
-            value.append(textElement.getValue());
+            value.append(textElement.getValue()).append("\n");
         }
         return value;
     }

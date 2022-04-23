@@ -10,6 +10,10 @@ public class Sentence implements TextElement {
     public Sentence() {
     }
 
+    public Sentence(List<TextElement> words) {
+        this.words = words;
+    }
+
     @Override
     public StringBuilder getValue() {
         StringBuilder value = new StringBuilder();

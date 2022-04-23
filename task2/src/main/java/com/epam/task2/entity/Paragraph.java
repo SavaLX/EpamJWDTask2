@@ -9,6 +9,10 @@ public class Paragraph implements TextElement {
     public Paragraph() {
     }
 
+    public Paragraph(List<TextElement> sentences) {
+        this.sentences = sentences;
+    }
+
     @Override
     public StringBuilder getValue() {
         StringBuilder value = new StringBuilder();

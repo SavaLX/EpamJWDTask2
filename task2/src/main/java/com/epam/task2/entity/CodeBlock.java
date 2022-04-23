@@ -7,6 +7,10 @@ public class CodeBlock implements TextElement{
 
     StringBuilder value;
 
+    public CodeBlock(StringBuilder value) {
+        this.value = value;
+    }
+
     @Override
     public StringBuilder getValue() {
         return value;

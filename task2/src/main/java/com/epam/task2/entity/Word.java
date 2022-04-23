@@ -4,10 +4,21 @@ public class Word implements TextElement {
 
     StringBuilder value;
 
+
+    public Word(StringBuilder value) {
+        this.value = value;
+    }
+
+    public Word() {
+    }
+
     @Override
     public StringBuilder getValue() {
-        System.out.printf("Word");
         return value;
+    }
+
+    public void setValue(StringBuilder value) {
+        this.value = value;
     }
 
     @Override
