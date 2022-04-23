@@ -10,17 +10,16 @@ import java.util.List;
 public class ParagraphParser {
 
     private static final String REGEX_SENTENCE = "\\.\s";
-    SentenceParser sentenceParser = new SentenceParser();
+    private final SentenceParser sentenceParser = new SentenceParser();
 
     public List<TextElement> parse(@NotNull String line) {
 
         String[] sentencesArray = line.split(REGEX_SENTENCE);
         List<TextElement> sentences = new ArrayList<>();
 
-        for (int i = 0; i < sentencesArray.length; i++) {
-            sentences.add(new Sentence(sentenceParser.parse(sentencesArray[i] + ". ")));
+        for (String s : sentencesArray) {
+            sentences.add(new Sentence(sentenceParser.parse(s + ". ")));
         }
-
         return sentences;
     }
 }

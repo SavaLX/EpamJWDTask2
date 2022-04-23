@@ -12,28 +12,23 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TextParser {
-
     private static final String REGEX_PARAGRAPHS = "^([A-Z]|[1-9])";
-    private static final String REGEX_CODE_LINES = "^(void|class)|^(\\s+)|(\\})";
 
     public List<TextElement> parse() {
 
         List<String> textLines = parseTextToLines();
         List<TextElement> elements = new ArrayList<>();
         ParagraphParser paragraphParser = new ParagraphParser();
-        CodeParser codeParser = new CodeParser();
         Pattern pattern = Pattern.compile(REGEX_PARAGRAPHS);
 
         for (String string : textLines) {
-            String str = string;
-            Matcher matcher = pattern.matcher(str);
+            Matcher matcher = pattern.matcher(string);
             if (matcher.find()) {
-                elements.add(new Paragraph(paragraphParser.parse(str)));
+                elements.add(new Paragraph(paragraphParser.parse(string)));
             } else {
-                elements.add(new CodeBlock(new StringBuilder(str)));
+                elements.add(new CodeBlock(new StringBuilder(string)));
             }
         }
-
         return elements;
     }
 
@@ -60,7 +55,6 @@ public class TextParser {
             }
         }
         scanner.close();
-
         return lines;
     }
 }

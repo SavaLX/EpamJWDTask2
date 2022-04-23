@@ -16,8 +16,8 @@ public class SentenceParser {
         String[] words = sentence.split(REGEX_WORDS);
         List<TextElement> listOfWords = new ArrayList<>();
 
-        for (int i = 0; i < words.length; i++) {
-            Word word = new Word(new StringBuilder(words[i] + " "));
+        for (String s : words) {
+            Word word = new Word(new StringBuilder(s + " "));
             listOfWords.add(word);
         }
         return listOfWords;
