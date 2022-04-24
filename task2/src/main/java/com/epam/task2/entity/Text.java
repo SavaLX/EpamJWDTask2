@@ -24,6 +24,10 @@ public class Text implements TextElement {
         return value;
     }
 
+    public List<TextElement> getParagraphsAndCodeBlocks() {
+        return paragraphsAndCodeBlocks;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

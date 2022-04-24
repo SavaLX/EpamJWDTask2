@@ -12,9 +12,8 @@ import java.util.List;
 public class ParagraphParser {
 
     private static final String REGEX_SENTENCE = "\\.\s";
-    private final SentenceParser sentenceParser = new SentenceParser();
-
     private static final Logger logger = LogManager.getLogger(ParagraphParser.class);
+    private final SentenceParser sentenceParser = new SentenceParser();
 
     public List<TextElement> parse(@NotNull String line) {
 
@@ -24,7 +23,11 @@ public class ParagraphParser {
         logger.debug("Start parsing paragraphs into sentences and save them into List<TextElement>");
 
         for (String s : sentencesArray) {
-            sentences.add(new Sentence(sentenceParser.parse(s + ". ")));
+            if (s.endsWith(":") || s.endsWith(".")) {
+                sentences.add(new Sentence(sentenceParser.parse(s + " ")));
+            } else {
+                sentences.add(new Sentence(sentenceParser.parse(s + ". ")));
+            }
         }
 
         logger.debug("List<TextElement> has been completed with sentences");

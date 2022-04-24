@@ -24,6 +24,10 @@ public class Sentence implements TextElement {
         return value;
     }
 
+    public List<TextElement> getWords() {
+        return words;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
