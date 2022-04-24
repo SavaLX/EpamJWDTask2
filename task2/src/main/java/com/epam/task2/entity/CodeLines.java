@@ -3,31 +3,30 @@ package com.epam.task2.entity;
 import java.util.Objects;
 
 /**
- * Class-entity word with parameter "value"
+ * Class-entity code lines with parameter "value"
  */
-public class Word implements TextElement {
-
-    /** Field value of word */
+public class CodeLines implements TextElement {
+    /** Field value of code line */
     private StringBuilder value;
 
     /**Constructor - creating new object with particular value
-     * @param value - value of word
-     * @see Word#Word()
+     * @param value - value of code line
+     * @see CodeLines#CodeLines()
      * */
-    public Word(StringBuilder value) {
+    public CodeLines(StringBuilder value) {
         this.value = value;
     }
 
     /** Constructor - creating new object without parameters
-     * @see Word#Word()(StringBuilder)
+     * @see CodeLines#CodeLines(StringBuilder)
      * */
-    public Word() {
+    public CodeLines() {
     }
 
     /**
      * This method are overriding from interface TextElement
      * for return value of object
-     * @return the value of word object
+     * @return the value of CodeLine object
      * */
     @Override
     public StringBuilder getValue() {
@@ -37,9 +36,9 @@ public class Word implements TextElement {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Word)) return false;
-        Word word = (Word) o;
-        return getValue().equals(word.getValue());
+        if (!(o instanceof CodeLines)) return false;
+        CodeLines codeLines = (CodeLines) o;
+        return Objects.equals(getValue(), codeLines.getValue());
     }
 
     @Override
@@ -49,7 +48,7 @@ public class Word implements TextElement {
 
     @Override
     public String toString() {
-        return "Word{" +
+        return "CodeLines{" +
                 "value=" + value +
                 '}';
     }

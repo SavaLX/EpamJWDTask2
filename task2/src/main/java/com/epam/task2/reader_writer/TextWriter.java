@@ -9,10 +9,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+/** Class for write data to file*/
 public class TextWriter {
 
     private static final Logger logger = LogManager.getLogger(TextWriter.class);
 
+    /**
+     * Method for write completed text to file
+     * @param text - text that write to file
+     * */
     public void writeTextInFile(Text text) {
 
         logger.debug("Start writing parsed text in output file");
@@ -24,12 +29,16 @@ public class TextWriter {
 
             fileWriter.flush();
         } catch (IOException e) {
-            //TODO: add logger
+            logger.error("The collected text could not be written to file");
         }
 
         logger.debug("Text has been writing in output file");
     }
 
+    /**
+     * Method for writing sentences of text in ascending order of the words in each one to a file
+     * @param sentences - list of sentences that need to sort
+     * */
     public void writeTaskTwoInFile(List<Sentence> sentences) {
 
         logger.debug("Start writing task two in output file");
@@ -43,7 +52,7 @@ public class TextWriter {
 
             fileWriter.flush();
         } catch (IOException e) {
-            //TODO: add logger
+            logger.error("The task two could not be written to file");
         }
 
         logger.debug("Task2 has been writing in output file");

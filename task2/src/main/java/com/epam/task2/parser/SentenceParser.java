@@ -9,12 +9,22 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class for parsing sentences into words
+ * */
 public class SentenceParser {
 
+    /** Field of regex for split sentence by words */
     private static final String REGEX_WORDS = " ";
 
     private static final Logger logger = LogManager.getLogger(SentenceParser.class);
 
+    /**
+     * Method for parsing sentences into words
+     * @return list of words
+     * @param sentence - sentence that need to parse
+     * @see ParagraphParser#parse(String) ()
+     * */
     public List<TextElement> parse(@NotNull String sentence) {
 
         String[] words = sentence.split(REGEX_WORDS);

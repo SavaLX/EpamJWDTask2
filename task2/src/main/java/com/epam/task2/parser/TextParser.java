@@ -1,6 +1,6 @@
 package com.epam.task2.parser;
 
-import com.epam.task2.entity.CodeBlock;
+import com.epam.task2.entity.CodeLines;
 import com.epam.task2.entity.Paragraph;
 import com.epam.task2.entity.TextElement;
 import com.epam.task2.reader_writer.TextReader;
@@ -13,11 +13,22 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Class for parsing input text into paragraphs and code lines
+ * */
 public class TextParser {
+
+    /** Field of regex for find paragraphs in text */
     private static final String REGEX_PARAGRAPHS = "^([A-Z]|[1-9])";
 
     private static final Logger logger = LogManager.getLogger(TextParser.class);
 
+    /**
+     * Method for parsing text lines into paragraphs and code lines
+     * @return list of paragraphs and code lines
+     * @see TextParser#parseTextToLines()
+     * @see ParagraphParser#parse(String) 
+     * */
     public List<TextElement> parse() {
 
         List<String> textLines = parseTextToLines();
@@ -32,7 +43,7 @@ public class TextParser {
             if (matcher.find()) {
                 elements.add(new Paragraph(paragraphParser.parse(string)));
             } else {
-                elements.add(new CodeBlock(new StringBuilder(string)));
+                elements.add(new CodeLines(new StringBuilder(string)));
             }
         }
 
@@ -40,6 +51,10 @@ public class TextParser {
         return elements;
     }
 
+    /**
+     * Method for parse input text into text lines and code lines by regex
+     * @return list of lines
+     * */
     public List<String> parseTextToLines() {
 
         TextReader textReader = new TextReader();

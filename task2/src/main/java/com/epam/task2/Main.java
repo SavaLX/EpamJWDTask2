@@ -10,30 +10,27 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
-
 public class Main {
 
     private static final Logger logger = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
 
-        logger.info("The application has been started");
-
+        TextOperation textOperation = new TextOperation();
         TextParser textParser = new TextParser();
-        List<TextElement> list = textParser.parse();
-
-        Text text = new Text(list);
         TextWriter textWriter = new TextWriter();
-        textWriter.writeTextInFile(text);
 
-        logger.info("The application has been finished");
+
+        logger.info("The application has been started");
+        List<TextElement> list = textParser.parse();
+        Text text = new Text(list);
+        textWriter.writeTextInFile(text);
 
 
         logger.info("Task two has been started");
-        TextOperation textOperation = new TextOperation();
         textWriter.writeTaskTwoInFile(textOperation.taskTwo(text));
         logger.info("Task two has been finished");
 
-
+        logger.info("The application has been finished");
     }
 }

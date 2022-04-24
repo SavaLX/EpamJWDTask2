@@ -9,14 +9,25 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class for parsing paragraphs into sentences
+ * */
 public class ParagraphParser {
 
+    /** Field of regex for split sentences in paragraph */
     private static final String REGEX_SENTENCE = "\\.\s";
     private static final Logger logger = LogManager.getLogger(ParagraphParser.class);
-    private final SentenceParser sentenceParser = new SentenceParser();
 
+    /**
+     * Method for parsing paragraph into sentences
+     * @return list sentences
+     * @param line paragraph that need to parse
+     * @see TextParser#parse()
+     * @see SentenceParser#parse(String)
+     * */
     public List<TextElement> parse(@NotNull String line) {
 
+        SentenceParser sentenceParser = new SentenceParser();
         String[] sentencesArray = line.split(REGEX_SENTENCE);
         List<TextElement> sentences = new ArrayList<>();
 

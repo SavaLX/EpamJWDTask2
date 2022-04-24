@@ -7,11 +7,15 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Scanner;
 
-
+/** Class for read text from input file*/
 public class TextReader {
 
     private static final Logger logger = LogManager.getLogger(TextReader.class);
 
+    /**
+     * Method for read text from file into StringBuilder
+     * @return the text that has been reading from file
+     * */
     public StringBuilder textRead() {
         StringBuilder stringBuilder = new StringBuilder();
 
@@ -27,7 +31,7 @@ public class TextReader {
             }
             scanner.close();
         } catch (IOException e) {
-            //TODO: logger and solve the dots
+            logger.error("The input file could not be read");
         }
 
         logger.debug("Text has been reading from file");
